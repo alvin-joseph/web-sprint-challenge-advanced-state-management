@@ -37,7 +37,6 @@ const reducer = (state = initialState, action) => {
             ...action.payload,
             id:Date.now()
           }
-            //console.log(action.payload);
           return {
             ...state,
             smurfs: [...state.smurfs, newSmurf]

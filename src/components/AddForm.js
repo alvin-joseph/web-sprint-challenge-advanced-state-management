@@ -8,12 +8,14 @@ import { setError, addSmurf } from '../actions';
 const AddForm = (props) => {
     const { setError, addSmurf, errorMessage } = props;
 
-    const [state, setState] = useState({
+    const initialValues = {
         name:"",
         position:"",
         nickname:"",
         description:""
-    });
+    }
+
+    const [state, setState] = useState(initialValues);
 
     const handleChange = e => {
         setState({
@@ -26,8 +28,10 @@ const AddForm = (props) => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
             setError("Name, position and nickname fields are required.");
+        } else {
+            addSmurf(state);
         }
-        addSmurf(state);
+        setState(initialValues);
     }
 
     return(<section>
