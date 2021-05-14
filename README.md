@@ -41,7 +41,7 @@ In this challenge, you are to build a Smurfs village database utilizing Redux as
  Your finished project must include all of the following requirements. **Unlike other projects, the local server used here can not be accessed through the browser. It is started automatically and without the need for starting a server.js file. Feel free to ignore any messages related to MSW or mock service workers. For this and the rest of your sprint challenges, test the functioning of the server directly through your axios calls.**
 
 #### reducers/index.js
-  Add in the needed state and reducer cases to hold and modify smurf error messages, loading status and smurf data. **If at all possible, add in action cases one at a time, instead of all at once. Test your state connects and reducer cases as nessisary.**
+  Add in the needed state and reducer cases to hold and modify smurf error messages, loading status and smurf data. **If at all possible, add in action cases one at a time, instead of all at once. Test your state connects and reducer cases as necessary.**
 
   * [ ] Adds the following state values into the initialState:
       - an array of smurfs
@@ -167,6 +167,19 @@ Example of object created in Smurf DB:
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. Add your answers to the questions within `interview_answers.md` file. These will not be counted as a part of your sprint score but will be helpful for preparing you for your endorsement interview, and enhancing overall understanding.
 
 1. What problem does the context API help solve?
+
+In a typical React application, data is passed from parent to child via props. This can be alot of work for certain types of props that are required by many components within an application. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
+
 2. In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+Actions carry a payload of information that is 'dispatched' to our reducer. Actions are plain JavaScript objects that must have a type attribute to indicate what interaction just happened. They also have an optional payload property.
+Reducers are functions that don't produce any side-effects. They take in two arguments, the current state from the Redux store, and the action object sent by the action creator functions. The reducer takes the payload of information from the action and uses the type to find out what to do, and the payload to find out what to update on state.
+The store is an immutable object tree in Redux. It is the state container that holds the application's state. Redux can only have a single store per application which is why it is known as the 'single source of truth'. Whenever a store is created, you need to specify the reducer. 
+
 3. What does `redux-thunk` allow us to do? How does it change our `action-creators`?
+
+Because the Redux action to reducer flow is synchronous, we use the Redux Thunk to make the flow asynchronous and make API calls from our action creators. When an action creator is called, redux-thunk intercepts and acts on returned data. If the thing returned is an action, it forwards the action through to the reducer. But, if the thing returned is a function, aka a thunk (a function returned from a function), then it invokes the thunk and passes the dispatch function as an argument to it.
+
 4. What is your favorite state management system you've learned and this sprint? Please explain why!
+
+I initially thought the useReducer hook was my favorite state management system. I even missed it when we started learning about Redux. Although as soon as I got comfortable with Redux I could definitely see the light at the end of the tunnel. There is a ton of boilerplate code and it doesn’t seem super efficient for small applications but I absolutely see the benefit when we get to the job market and deal with large scale applications. 
